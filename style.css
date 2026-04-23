@@ -83,7 +83,7 @@ section:hover h2::after {
    4. CABECERA (HEADER)
 ========================================= */
 header {
-    height: 80vh; /* Ocupa el 80% de la pantalla inicial */
+    height: 40vh; /* Reducimos el tamaño a la mitad */
     display: flex;
     flex-direction: column;
     justify-content: center;
