@@ -5,8 +5,8 @@
 
 :root {
     /* Paleta Tech/IA: Oscuro con acentos Cian y Magenta neón */
-    --bg-color: #0a0e17; /* Fondo principal muy oscuro */
-    --bg-accent: #161b29; /* Fondo de tarjetas/secciones */
+    --bg-color: #0f2b47; /* Fondo principal ajustado */
+    --bg-accent: #162c48; /* Fondo de tarjetas/secciones */
     --text-color: #f0f6fc;
     --primary-neon: #00f2fe; /* Cian eléctrico */
     --secondary-neon: #4facfe; /* Azul brillante */
