@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frey Benites - Portafolio</title>
+    
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
 
     <header>
-        <h1>Frey Dilbert Benites Huallpa</h1>
-        <p>Contabilidad, Administración y Análisis de Datos</p>
+        <h1>Frey Benites</h1>
+        <p class="typewriter">Contabilidad | Auditoría | Análisis de Datos</p>
     </header>
 
     <section id="sobre-mi">
@@ -18,28 +21,50 @@
         <p>Soy Frey Benites, estudiante de 8vo ciclo de Contabilidad y Administración. Cuento con experiencia práctica en auditoría y finanzas corporativas, habiendo colaborado en el sector minero (Minera Pampa de Cobre) y en firmas de alto nivel (KPMG). Me apasiona la transformación digital aplicada a los negocios: combino mis sólidos conocimientos normativos (NIC, PCGE) con herramientas tecnológicas como Python y Power BI para automatizar procesos, analizar datos complejos y aportar soluciones eficientes, analíticas y con gran disciplina.</p>
     </section>
 
-    <section id="proyectos">
-        <h2>Proyectos y Habilidades</h2>
+    <section id="experiencia">
+        <h2>Experiencia Profesional</h2>
         <ul>
-            <li><strong>Análisis Financiero:</strong> Dashboards interactivos para toma de decisiones.</li>
-            <li><strong>Automatización:</strong> Scripts básicos para la limpieza de datos contables.</li>
+            <li>
+                <strong>Practicante de Auditoría Financiera | KPMG</strong> <br> 
+                <em>Enero 2026 – Marzo 2026</em> <br> 
+                Revisión de procesos, validación de saldos y aplicación práctica de normativas financieras.
+            </li>
+            <li>
+                <strong>Practicante de Contabilidad | Minera Pampa de Cobre</strong> <br> 
+                <em>Setiembre 2025 – Diciembre 2025</em> <br> 
+                Apoyo en la gestión contable, cruce de información y soporte en el análisis financiero.
+            </li>
         </ul>
     </section>
 
-    <footer>
-        <p>Contacto: freydilbertbh@gmail.com | <a href="https://www.linkedin.com/in/freybh" target="_blank">www.linkedin.com/in/freybh</a></p>
-    </footer>
-
-</body>
-</html>
-...
     <section id="proyectos">
         <h2>Proyectos y Habilidades</h2>
-        <ul>
-            <li><strong>Análisis de Datos:</strong> Modelado y creación de dashboards interactivos en Power BI.</li>
-            <li><strong>Automatización:</strong> Desarrollo de scripts en Python para la optimización y limpieza de bases de datos contables.</li>
-            <li><strong>Normativa Contable:</strong> Análisis técnico y aplicación de NIC y PCGE.</li>
-        </ul>
+        
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide">
+                    <h3>Análisis de Datos</h3>
+                    <p>Modelado y creación de dashboards interactivos en Power BI para la toma de decisiones estratégicas.</p>
+                </div>
+                
+                <div class="swiper-slide">
+                    <h3>Automatización con Python</h3>
+                    <p>Desarrollo de scripts para la optimización, estructuración y limpieza de grandes bases de datos contables.</p>
+                </div>
+                
+                <div class="swiper-slide">
+                    <h3>Normativa Contable</h3>
+                    <p>Análisis técnico, justificación y aplicación estricta de normas como la NIC 16, NIC 2 y el PCGE.</p>
+                </div>
+
+            </div>
+            
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </section>
 
     <section id="certificaciones">
@@ -51,8 +76,28 @@
     </section>
 
     <footer>
-        <p>Contacto: freydilbertbh@gmail.com | <a href="#">LinkedIn</a></p>
+        <p>Contacto: freybenites@email.com | <a href="https://www.linkedin.com/in/frey-benites" target="_blank">LinkedIn</a></p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            direction: 'horizontal',
+            loop: true, // Carrusel infinito
+            autoplay: {
+                delay: 3500, // Cambia cada 3.5 segundos
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 
 </body>
 </html>

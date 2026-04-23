@@ -1,58 +1,256 @@
-/* Importamos una fuente moderna y muy legible de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+/* =========================================
+   1. IMPORTACIÓN DE FUENTES Y VARIABLES
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-body {
-    font-family: 'Nunito', system-ui, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+:root {
+    /* Paleta Tech/IA: Oscuro con acentos Cian y Magenta neón */
+    --bg-color: #0a0e17; /* Fondo principal muy oscuro */
+    --bg-accent: #161b29; /* Fondo de tarjetas/secciones */
+    --text-color: #f0f6fc;
+    --primary-neon: #00f2fe; /* Cian eléctrico */
+    --secondary-neon: #4facfe; /* Azul brillante */
+    --accent-magenta: #ff00ff; /* Magenta para toques finales */
+    --glass-bg: rgba(22, 27, 41, 0.7); /* Efecto cristal esmerilado */
+    --border-glass: rgba(255, 255, 255, 0.08);
 }
 
+/* =========================================
+   2. ESTILOS BASE Y RESET
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden; /* Evita que la página se desborde hacia los lados por las animaciones */
+}
+
+/* =========================================
+   3. DISEÑO DE SECCIONES GENERALES
+========================================= */
+section {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px); /* Efecto difuminado del fondo */
+    border-radius: 16px;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* Animación de entrada */
+    animation: fadeInUp 0.8s ease both;
+}
+
+/* Efecto de cascada: las secciones aparecen una tras otra */
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.4s; }
+section:nth-child(4) { animation-delay: 0.6s; }
+section:nth-child(5) { animation-delay: 0.8s; }
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Línea de neón animada debajo de los títulos (h2) */
+h2::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+    transition: width 0.4s ease;
+}
+
+section:hover h2::after {
+    width: 100%; /* La línea crece al pasar el mouse sobre la sección */
+}
+
+/* =========================================
+   4. CABECERA (HEADER)
+========================================= */
 header {
-    background-color: #2c3e50;
-    color: #ffffff;
+    height: 80vh; /* Ocupa el 80% de la pantalla inicial */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 3rem 1rem;
+    background: radial-gradient(circle at center, #1a253a 0%, var(--bg-color) 70%);
+    padding: 2rem;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+    font-size: 4rem;
+    font-weight: 800;
+    /* Texto con gradiente de colores */
+    background: linear-gradient(to right, #ffffff, var(--primary-neon), var(--accent-magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease both;
 }
 
-section {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 0.5rem;
-}
-
+/* =========================================
+   5. LISTAS Y TARJETAS (Experiencia, Certificados)
+========================================= */
 ul {
     list-style-type: none;
-    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 ul li {
-    background: #ecf0f1;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-left: 4px solid #3498db;
-    border-radius: 4px;
+    background: var(--bg-accent);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-glass);
+    transition: all 0.3s ease;
+    cursor: default;
 }
 
+/* Efecto al pasar el mouse por encima de una tarjeta */
+ul li:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--primary-neon);
+    box-shadow: 0 10px 20px rgba(0, 242, 254, 0.15);
+}
+
+ul li strong {
+    color: var(--primary-neon);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   6. CARRUSEL (Estilos para Swiper.js)
+========================================= */
+.swiper {
+    width: 100%;
+    height: auto;
+    padding-bottom: 3.5rem; /* Espacio para los puntitos de abajo */
+}
+
+.swiper-slide {
+    text-align: center;
+    background: var(--bg-accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-glass);
+    transition: all 0.3s ease;
+}
+
+.swiper-slide h3 {
+    color: var(--primary-neon);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.swiper-slide p {
+    font-size: 1.1rem;
+    color: #c9d1d9;
+}
+
+/* Colores de las flechas y puntos de Swiper */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--primary-neon) !important;
+    transform: scale(0.7); /* Las hace un poco más sutiles */
+}
+
+.swiper-pagination-bullet {
+    background: #8b949e !important; /* Puntos inactivos */
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--accent-magenta) !important; /* Punto activo */
+    box-shadow: 0 0 10px var(--accent-magenta);
+}
+
+/* =========================================
+   7. PIE DE PÁGINA (FOOTER)
+========================================= */
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 3rem;
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: #8b949e;
+    border-top: 1px solid var(--border-glass);
+    margin-top: 4rem;
+}
+
+footer a {
+    color: var(--secondary-neon);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 600;
+}
+
+footer a:hover {
+    color: var(--accent-magenta);
+}
+
+/* =========================================
+   8. ANIMACIONES Y EFECTOS ESPECIALES
+========================================= */
+/* Animación de aparición suave desde abajo */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto Máquina de Escribir (Typewriter) */
+.typewriter {
+    overflow: hidden; 
+    border-right: 2px solid var(--primary-neon); /* El cursor de escritura */
+    white-space: nowrap; 
+    margin: 0 auto; 
+    font-size: 1.5rem;
+    color: #8b949e;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+}
+
+/* La escritura en sí */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% } /* Ajusta automáticamente al tamaño del texto */
+}
+
+/* El parpadeo del cursor */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-neon); }
+}
+
+/* Ajustes para pantallas pequeñas (Celulares) */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.5rem; }
+    .typewriter { font-size: 1rem; border-right: none; white-space: normal; animation: fadeInUp 1s ease both; }
+    section { margin: 2rem 1rem; padding: 1.5rem; }
 }
