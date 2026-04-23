@@ -5,7 +5,7 @@
 
 :root {
     /* Paleta Tech/IA: Oscuro con acentos Cian y Magenta neón */
-    --bg-color: #01050f; /* Fondo principal muy oscuro */
+    --bg-color: #0a0e17; /* Fondo principal muy oscuro */
     --bg-accent: #161b29; /* Fondo de tarjetas/secciones */
     --text-color: #f0f6fc;
     --primary-neon: #00f2fe; /* Cian eléctrico */
@@ -83,7 +83,7 @@ section:hover h2::after {
    4. CABECERA (HEADER)
 ========================================= */
 header {
-    height: 40vh; /* Reducimos el tamaño a la mitad */
+    height: 80vh; /* Ocupa el 80% de la pantalla inicial */
     display: flex;
     flex-direction: column;
     justify-content: center;
