@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños Laura!</title>
+    <!-- Librería premium para el efecto de confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
@@ -22,108 +23,115 @@
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            /* SE CORRIGIÓ AQUÍ: Permitir scroll vertical en móviles si el contenido es largo */
+            overflow-x: hidden;
+            overflow-y: auto;
             perspective: 1200px;
+            box-sizing: border-box;
         }
 
-        /* Tarjeta de Cristal Premium (Glassmorphism) con Movimiento 3D */
+        /* Tarjeta Adaptable con Movimiento 3D */
         .card-container {
-            background: rgba(20, 20, 35, 0.75);
+            background: rgba(20, 20, 35, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.6),
-                0 0 40px rgba(255, 0, 127, 0.1);
-            border-radius: 24px;
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(255, 0, 127, 0.1);
+            border-radius: 20px;
             width: 100%;
-            max-width: 550px;
-            padding: 40px;
+            max-width: 500px;
+            padding: 30px 20px;
             box-sizing: border-box;
             text-align: center;
             position: relative;
             transform-style: preserve-3d;
-            transform: rotateX(6deg) rotateY(-6deg);
+            /* Posición inicial sutil */
+            transform: rotateX(4deg) rotateY(-4deg);
             transition: transform 0.1s ease, box-shadow 0.4s ease;
+            margin: 20px 0;
         }
 
-        .card-container:hover {
-            box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.8),
-                0 0 50px rgba(112, 0, 255, 0.2);
-        }
-
-        /* Cabecera Emotiva */
+        /* Cabecera */
         .intro-text {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
+            line-height: 1.3;
         }
 
         .title-celebrate {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             margin: 0;
             font-weight: 800;
             color: #ffffff;
         }
 
-        /* 👑 EL NOMBRE EN 3D CORREGIDO Y LIMPIO 👑 */
+        /* 👑 EL NOMBRE EN 3D ESCALABLE PARA MÓVILES 👑 */
         .name-3d {
-            font-size: 4.8rem;
+            font-size: 3.5rem; /* Ajustado por defecto para pantallas de celular */
             font-weight: 900;
-            margin: 20px 0;
+            margin: 15px 0;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #ffffff;
             display: inline-block;
             
-            /* Sombra limpia sin bloques raros de fondo */
             text-shadow: 
                 0 1px 0 #ccc, 
                 0 2px 0 #c5c5c5, 
                 0 3px 0 #bbb, 
                 0 4px 0 #b0b0b0, 
-                0 5px 0 #a5a5a5, 
-                0 8px 15px rgba(0,0,0,0.5),
+                0 6px 12px rgba(0,0,0,0.5),
                 0 0 20px var(--primary),
                 0 0 40px var(--secondary);
             
             animation: floatName 2s infinite alternate ease-in-out;
         }
 
-        @media(max-width: 480px) {
-            .name-3d { font-size: 3.5rem; }
+        /* Si la pantalla es más grande (Computadora), el nombre crece */
+        @media(min-width: 480px) {
+            .name-3d { font-size: 4.8rem; }
+            .title-celebrate { font-size: 2.2rem; }
+            .card-container { padding: 40px; }
+            .intro-text { font-size: 0.85rem; letter-spacing: 3px; }
         }
 
-        /* Contenedor de Deseos Elegantes */
+        /* Contenedor de Deseos */
         .wishes-box {
             text-align: left;
-            margin: 25px 0;
+            margin: 20px 0;
             background: rgba(255, 255, 255, 0.03);
-            padding: 25px;
-            border-radius: 16px;
+            padding: 18px;
+            border-radius: 14px;
             border-left: 4px solid var(--primary);
         }
 
         .wish-line {
-            margin: 15px 0;
-            font-size: 1.05rem;
-            line-height: 1.6;
+            margin: 12px 0;
+            font-size: 0.95rem; /* Letra ligeramente más compacta para evitar cortes */
+            line-height: 1.5;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: #e0e0e6;
-            opacity: 0; /* Aparecen con la animación de abajo */
-            transform: translateY(15px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            opacity: 0; 
+            transform: translateY(10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        @media(min-width: 480px) {
+            .wish-line { font-size: 1.05rem; margin: 15px 0; }
+            .wishes-box { padding: 25px; margin: 25px 0; }
         }
 
         .wish-line.visible {
@@ -132,26 +140,31 @@
         }
 
         .icon {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             flex-shrink: 0;
         }
 
         /* Mensaje de Cierre */
         .footer-text {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            margin-top: 25px;
+            margin-top: 20px;
             color: #ffffff;
             text-shadow: 0 0 10px var(--accent);
             opacity: 0;
             transition: opacity 1s ease;
+            line-height: 1.4;
+        }
+
+        @media(min-width: 480px) {
+            .footer-text { font-size: 1.3rem; margin-top: 25px; }
         }
 
         .footer-text.visible { opacity: 1; }
 
         @keyframes floatName {
             from { transform: scale(1); }
-            to { transform: translateY(-6px) scale(1.03); }
+            to { transform: translateY(-4px) scale(1.02); }
         }
     </style>
 </head>
@@ -188,23 +201,27 @@
     <script>
         const card = document.getElementById('interactive-card');
         
-        // Efecto Giro 3D con el mouse
+        // Efecto Giro 3D con el mouse (Escritorio)
         document.addEventListener('mousemove', (e) => {
-            const rotateX = (window.innerHeight / 2 - e.pageY) / 25;
-            const rotateY = (window.innerWidth / 2 - e.pageX) / -25;
+            const rotateX = (window.innerHeight / 2 - e.pageY) / 30;
+            const rotateY = (window.innerWidth / 2 - e.pageX) / -30;
             card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
-        // Soporte para celulares
-        document.addEventListener('touchmove', (e) => {
+        // Soporte de giroscopio táctil optimizado para no trabar el scroll en celulares
+        card.addEventListener('touchmove', (e) => {
             const toque = e.touches[0];
-            const rotateX = (window.innerHeight / 2 - toque.pageY) / 30;
-            const rotateY = (window.innerWidth / 2 - toque.pageX) / -30;
+            const bounding = card.getBoundingClientRect();
+            const x = toque.clientX - bounding.left - (bounding.width / 2);
+            const y = toque.clientY - bounding.top - (bounding.height / 2);
+            
+            const rotateX = -y / 20;
+            const rotateY = x / 20;
             card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
+        }, { passive: true });
 
         document.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateX(6deg) rotateY(-6deg)`;
+            card.style.transform = `rotateX(4deg) rotateY(-4deg)`;
         });
 
         // Confeti continuo
@@ -214,17 +231,17 @@
 
             (function frame() {
                 confetti({
-                    particleCount: 3,
+                    particleCount: 2,
                     angle: 60,
-                    spread: 60,
-                    origin: { x: 0, y: 0.8 },
+                    spread: 55,
+                    origin: { x: 0, y: 0.85 },
                     colors: ['#ff007f', '#7000ff', '#00f2fe']
                 });
                 confetti({
-                    particleCount: 3,
+                    particleCount: 2,
                     angle: 120,
-                    spread: 60,
-                    origin: { x: 1, y: 0.8 },
+                    spread: 55,
+                    origin: { x: 1, y: 0.85 },
                     colors: ['#ff007f', '#7000ff', '#00f2fe']
                 });
 
@@ -234,7 +251,7 @@
             }());
         }
 
-        // Mostrar las líneas una por una automáticamente
+        // Mostrar las líneas secuencialmente
         async function animarContenido() {
             const lineas = [
                 document.getElementById('wish1'),
@@ -246,15 +263,15 @@
             const footer = document.getElementById('footer-msg');
 
             for (let i = 0; i < lineas.length; i++) {
-                await new Promise(resolve => setTimeout(resolve, 700));
+                await new Promise(resolve => setTimeout(resolve, 600));
                 lineas[i].classList.add('visible');
             }
 
-            await new Promise(resolve => setTimeout(resolve, 500));
+            await new Promise(resolve => setTimeout(resolve, 400));
             footer.classList.add('visible');
             
-            // Explosión masiva
-            confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+            // Explosión masiva adaptable
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.65 } });
             lluviaDeEstrellas();
         }
 
